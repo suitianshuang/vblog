@@ -1,0 +1,27 @@
+
+.user-chat-bottom.data-v-bebda122{
+	position: fixed;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	height: 120rpx;
+	padding: 0 20rpx;
+	background: #FFFFFF;
+	border-top: 1rpx solid #EEEEEE;
+}
+.user-chat-bottom>input.data-v-bebda122{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin-right: 20rpx;
+	padding: 10rpx 20rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+	background: #F7F7F7;
+}
+.user-chat-bottom>view.data-v-bebda122{
+	width: 80rpx;
+	font-size: 45rpx;
+}
+

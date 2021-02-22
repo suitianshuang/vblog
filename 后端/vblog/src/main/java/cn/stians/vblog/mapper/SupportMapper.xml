@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.SupportMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.model.Support" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="findSupportsByArticleId" resultType="int" resultMap="BaseResultMap">
+    select * from support where article_id = #{0}
+  </select>
+
+  <insert id="support" parameterType="cn.stians.vblog.model.Support">
+    insert into support (id,article_id,user_id,type,create_time)
+    values (default ,#{articleId},#{userId},#{type},#{createTime})
+  </insert>
+
+  <update id="updateType" parameterType="cn.stians.vblog.model.Support" >
+    update support set type =#{type} where article_id =#{articleId} and user_id = #{userId}
+  </update>
+</mapper>

@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.CommentMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Comment" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="parent_id" property="parentId" jdbcType="INTEGER" />
+    <result column="message" property="message" jdbcType="VARCHAR" />
+    <result column="article_id" property="articleId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="comment_num" property="commentNum" jdbcType="INTEGER" />
+  </resultMap>
+
+  <select id="checkParentId" parameterType="cn.stians.vblogadmin.model.Comment" resultType="int">
+    select count(*) from comment where id = #{parentId}
+  </select>
+
+  <insert id="insertCurrentComment" parameterType="cn.stians.vblogadmin.model.Comment">
+    insert into comment (id,user_id,parent_id,message,create_time,article_id)
+    values (default ,#{userId},#{parentId},#{message},#{createTime},#{articleId})
+  </insert>
+  <update id="updateById" parameterType="int">
+    update comment set comment_num =comment_num+1 where id =#{parentId}
+  </update>
+
+  <resultMap id="mymap1" type="cn.stians.vblogadmin.model.Comment" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUsersByCommentId" column="user_id">
+    </association>
+  </resultMap>
+  <select id="getCommentList" parameterType="int" resultMap="mymap1">
+    select * from comment where article_id = #{articleId}
+  </select>
+
+  <resultMap id="mymap2" type="cn.stians.vblogadmin.model.Comment" extends="BaseResultMap">
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUsersByCommentId" column="user_id"></association>
+  </resultMap>
+  <select id="findCommentByArticleId" parameterType="int" resultMap="mymap2">
+     select * from comment  where article_id = #{id}
+  </select>
+  <delete id="deleteComment" parameterType="int">
+    delete from comment where article_id = #{articleId}
+  </delete>
+</mapper>

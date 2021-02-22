@@ -1,0 +1,31 @@
+
+.papar-left-popup-mask{
+	position: fixed;
+	right: 10;
+	left: 0;
+	top: 0;
+	bottom: 0;
+	z-index: 1999;
+}
+.papar-left-popup{
+	position: fixed;
+	right: 0;
+	top: 100rpx;
+	background: #1dc895;
+	z-index: 2000;
+	width: 55%;
+	border-radius: 20rpx;
+	box-shadow: 10rpx 10rpx 20rpx 20rpx #bababa;
+}
+.papar-left-popup>view{
+	padding: 20rpx;
+	font-size: 25rpx;
+}
+.papar-left-popup>view>view{
+	margin-right: 10rpx;
+	font-weight: bold;
+}
+.papar-left-popup-h{
+	background: #EEEEEE;
+}
+

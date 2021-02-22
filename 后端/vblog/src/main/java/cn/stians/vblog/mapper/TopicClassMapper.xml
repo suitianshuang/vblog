@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.TopicClassMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.model.TopicClass" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="classify_name" property="classifyName" jdbcType="VARCHAR" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+    <result column="isenable" property="isenable" jdbcType="INTEGER" />
+  </resultMap>
+
+
+  <select id="getAllTopicClass" resultMap="BaseResultMap">
+    select * from topic_class
+  </select>
+</mapper>

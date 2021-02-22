@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.ChatMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.entity.ChatMsg" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="to_id" property="toId" jdbcType="INTEGER" />
+    <result column="to_name" property="toName" jdbcType="VARCHAR" />
+    <result column="from_id" property="fromId" jdbcType="INTEGER" />
+    <result column="from_username" property="fromUsername" jdbcType="VARCHAR" />
+    <result column="from_userpic" property="fromUserpic" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="VARCHAR" />
+    <result column="data" property="data" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="INTEGER" />
+  </resultMap>
+  <!--ChatMsg{id=null, toId=20, toName='我是余锦',-->
+  <!--fromId=1, fromUsername='李秀丽', -->
+  <!--fromUserpic='http://10.0.2.2:8081/9961b97c-7933-47ba-93ea-df7e6b490707.jpeg', -->
+  <!--type='text', data='你好啊', time=1586158674952}-->
+
+  <insert id="saveNoReadMessage" parameterType="cn.stians.vblog.entity.ChatMsg">
+    insert into chatmsg (id,to_id,to_name,from_id,from_username,from_userpic,type,data,time)
+    values (default ,#{toId},#{toName},#{fromId},#{fromUsername},#{fromUserpic},#{type},#{data},#{time})
+  </insert>
+
+  <select id="findUnReadMessage" parameterType="int" resultMap="BaseResultMap">
+    select * from chatmsg where to_id = #{userId}
+  </select>
+
+  <delete id="deleteUnReadMessage" parameterType="int">
+    delete from chatmsg where to_id = #{userId}
+  </delete>
+
+</mapper>

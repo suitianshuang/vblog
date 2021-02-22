@@ -1,0 +1,25 @@
+
+.home-info.data-v-12db6ff0{
+	padding: 20rpx 40rpx;
+}
+.home-info>image.data-v-12db6ff0{
+	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
+	        flex-shrink: 0;
+	width: 100rpx;
+	height: 100rpx;
+	-webkit-border-radius: 100%;
+	        border-radius: 100%;
+	margin-right: 15rpx;
+}
+.home-info>view:first-of-type>view.data-v-12db6ff0:first-child{
+	font-size: 32rpx;
+}
+.home-info>view:first-of-type>view.data-v-12db6ff0:last-child{
+	color: #BBBBBB;
+}
+.home-info>view.data-v-12db6ff0:last-of-type{
+	height: 100%;
+}
+
+

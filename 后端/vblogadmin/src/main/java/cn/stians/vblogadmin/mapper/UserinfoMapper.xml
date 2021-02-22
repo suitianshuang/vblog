@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.UserinfoMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Userinfo" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="sex" property="sex" jdbcType="INTEGER" />
+    <result column="age" property="age" jdbcType="INTEGER" />
+    <result column="emotion" property="emotion" jdbcType="INTEGER" />
+    <result column="job" property="job" jdbcType="VARCHAR" />
+    <result column="birthday" property="birthday" jdbcType="DATE" />
+    <result column="hometown" property="hometown" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <select id="findAll" resultMap="BaseResultMap">
+    select *from userinfo where user_id = #{id}
+  </select>
+
+  <update id="updateMessage" parameterType="cn.stians.vblogadmin.model.Userinfo">
+    update userinfo
+    <set>
+      <if test="sex != null">sex=#{sex},</if>
+      <if test="emotion != null">emotion=#{emotion},</if>
+      <if test="job != null">job=#{job},</if>
+      <if test="birthday != null">birthday=#{birthday},</if>
+      <if test="hometown != null">hometown=#{hometown},</if>
+      <if test="age != null">age=#{age}</if>
+    </set>
+    where user_id =#{userId}
+  </update>
+  <select id="findUserInfoByUserId" parameterType="int" resultMap="BaseResultMap">
+    select id, user_id,sex,age,emotion,job,birthday,hometown from userinfo where user_id =#{id}
+  </select>
+  <insert id="saveUserMassage" parameterType="cn.stians.vblogadmin.model.Userinfo">
+    insert into userinfo (id,user_id) values (default ,#{id})
+  </insert>
+
+
+
+</mapper>

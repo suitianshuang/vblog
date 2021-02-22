@@ -1,0 +1,100 @@
+.common-list.data-v-3a61197e{
+	padding: 20rpx;
+}
+.common-list-l.data-v-3a61197e{
+	-webkit-flex-shrink: 0;
+	        flex-shrink: 0;
+}
+.common-list-l image.data-v-3a61197e{
+	width: 90rpx;
+	height: 90rpx;
+	border-radius:100%;
+}
+.common-list-r.data-v-3a61197e{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	        flex: 1;
+	margin-left: 15rpx;
+	border-bottom: 1rpx solid #EEEEEE;
+	padding-bottom: 10rpx;
+}
+.common-list-r>view:nth-child(3)>image.data-v-3a61197e{
+	width: 100%;
+	border-radius:10rpx;
+}
+.common-list-r>view:nth-child(1)>view.data-v-3a61197e:first-child{
+	color: #999999;
+	font-size: 32rpx;
+}
+.common-list-r>view:nth-child(1)>view.data-v-3a61197e:last-child{
+	background: #EEEEEE;
+	padding: 0 10rpx;
+	font-size: 26rpx;
+}
+.common-list-r>view.data-v-3a61197e:nth-child(2){
+	font-size: 32rpx;
+	padding: 12rpx 0;
+}
+.common-list-r>view.data-v-3a61197e:nth-child(3){
+	position: relative;
+	margin-bottom: 10rpx;
+}
+.common-list-play.data-v-3a61197e,.common-list-playinfo.data-v-3a61197e{
+	position: absolute;
+	color: #FFFFFF;
+}
+.common-list-play.data-v-3a61197e{
+	font-size: 130rpx;
+}
+.common-list-playinfo.data-v-3a61197e{
+	right: 10rpx;
+	bottom: 10rpx;
+	background: rgba(51, 51, 51, 0.73);
+	border-radius: 20rpx;
+	padding: 0 20rpx;
+	font-size: 26rpx;
+}
+.common-list-r>view:nth-child(4)>view.data-v-3a61197e{
+	color: #AAAAAA;
+}
+.common-list-r>view:nth-child(4)>view:nth-child(2)>view.data-v-3a61197e{
+	margin-left: 10rpx;
+	padding-left: 5rpx;
+	font-size: 28rpx;
+}
+.common-list-share.data-v-3a61197e{
+	background: #EEEEEE;
+	width: 100%;
+	padding: 10rpx;
+	border-radius: 10rpx;
+}
+.common-list-share>image.data-v-3a61197e{
+	width: 200rpx;
+	height: 150rpx;
+	margin-right: 10rpx;
+}
+.active.data-v-3a61197e{
+	color: #C5F61C;
+}
+.common-list-r.data-v-3a61197e{
+	border-bottom: 0;
+}
+.common-list.data-v-3a61197e{
+	border-bottom: 1rpx solid #EEEEEE;
+}
+.common-list-r-time.data-v-3a61197e{
+	padding: 15rpx 0;
+	color: #CCCCCC!important;
+	font-size: 25rpx;
+	background: #FFFFFF!important;
+}
+.common-list-r>view:nth-child(1)>view:nth-child(1)>view.data-v-3a61197e:first-child{
+	color: #999999;
+	font-size: 32rpx;
+}
+.common-list-r>view:nth-child(1)>view:nth-child(1)>view.data-v-3a61197e:last-child{
+	background: #EEEEEE;
+	padding: 0 10rpx;
+	font-size: 26rpx;
+}
+

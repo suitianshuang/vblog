@@ -1,0 +1,72 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/news/news",
+    "pages/paper/paper",
+    "pages/home/home",
+    "pages/search/search",
+    "pages/add-input/add-input",
+    "pages/topic-nav/topic-nav",
+    "pages/topic-detail/topic-detail",
+    "pages/user-list/user-list",
+    "pages/user-chat/user-chat",
+    "pages/detail/detail",
+    "pages/user-set/user-set",
+    "pages/user-set-repassword/user-set-repassword",
+    "pages/user-set-email/user-set-email",
+    "pages/user-set-userinfo/user-set-userinfo",
+    "pages/user-set-help/user-set-help",
+    "pages/user-set-about/user-set-about",
+    "pages/login/login",
+    "pages/user-space/user-space",
+    "pages/user-safe/user-safe",
+    "pages/user-history/user-history"
+  ],
+  "window": {
+    "navigationBarTextStyle": "black",
+    "navigationBarTitleText": "VBLOG",
+    "navigationBarBackgroundColor": "#ffffff",
+    "backgroundColor": "#ffffff"
+  },
+  "tabBar": {
+    "color": "#000000",
+    "selectedColor": "#ff007f",
+    "borderStyle": "black",
+    "backgroundColor": "#ffffff",
+    "list": [
+      {
+        "pagePath": "pages/index/index",
+        "text": "首页",
+        "iconPath": "/static/tabbar/index.png",
+        "selectedIconPath": "/static/tabbar/indexed.png"
+      },
+      {
+        "pagePath": "pages/news/news",
+        "text": "动态",
+        "iconPath": "/static/tabbar/news.png",
+        "selectedIconPath": "/static/tabbar/newsed.png"
+      },
+      {
+        "pagePath": "pages/paper/paper",
+        "text": "消息",
+        "iconPath": "/static/tabbar/paper.png",
+        "selectedIconPath": "/static/tabbar/papered.png"
+      },
+      {
+        "pagePath": "pages/home/home",
+        "text": "我的",
+        "iconPath": "/static/tabbar/home.png",
+        "selectedIconPath": "/static/tabbar/homeed.png"
+      }
+    ]
+  },
+  "nvueCompiler": "uni-app",
+  "renderer": "auto",
+  "splashscreen": {
+    "alwaysShowBeforeRender": true,
+    "autoclose": false
+  },
+  "appname": "仿糗事百科",
+  "compilerVersion": "2.6.8",
+  "usingComponents": {}
+}

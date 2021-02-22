@@ -1,0 +1,20 @@
+
+.topic-list.data-v-1e9d768c{
+	padding: 20rpx 0;
+	border-bottom: 1rpx solid #EEEEEE;
+}
+.topic-list image.data-v-1e9d768c{
+	width: 150rpx;
+	height: 150rpx;
+	-webkit-border-radius:10rpx;
+	        border-radius:10rpx;
+	margin-right: 20rpx;
+}
+.topic-list>view>view.data-v-1e9d768c{
+	color: #A4A4A4;
+}
+.topic-list>view>view.data-v-1e9d768c:first-child{
+	color: #333333;
+	font-size: 32rpx;
+}
+

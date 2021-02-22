@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.RegisterMapper" >
+
+<insert id="insertRegisterUser" >
+  insert  into register(id,email,code,create_time) values (default ,#{email},#{code},#{createTime})
+</insert>
+  <select id="findEmail" parameterType="String" resultType="int">
+    select count(*) from register where email = #{email}
+  </select>
+<update id="updateCodeAndEmail">
+  update  register set code = #{code} where  email =#{email}
+</update>
+
+  <select id="checkEmailAndCode" resultType="int">
+    select count(*) from register where email=#{email} and code =#{code}
+  </select>
+</mapper>

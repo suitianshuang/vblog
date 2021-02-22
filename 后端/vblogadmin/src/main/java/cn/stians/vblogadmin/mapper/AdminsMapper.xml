@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.AdminsMapper" >
+    <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Admins" >
+        <id column="id" property="id" jdbcType="INTEGER" />
+        <result column="name" property="name" jdbcType="VARCHAR" />
+        <result column="username" property="username" jdbcType="VARCHAR" />
+        <result column="password" property="password" jdbcType="VARCHAR" />
+        <result column="enabled" property="enabled" jdbcType="BIT"/>
+        <result column="adminpic" property="adminPic" jdbcType="VARCHAR" />
+        <result column="phone" property="phone" jdbcType="VARCHAR" />
+        <result column="address" property="address" jdbcType="VARCHAR" />
+        <result column="email" property="email" jdbcType="VARCHAR" />
+        <result column="mark" property="mark" jdbcType="VARCHAR" />
+    </resultMap>
+
+    <resultMap id="AdminMapWithRole" type="cn.stians.vblogadmin.model.Admins" extends="BaseResultMap">
+        <collection property="roles" ofType="cn.stians.vblogadmin.model.admin.RoleAdmin">
+            <id column="rid" property="id"/>
+            <result column="rname" property="name"/>
+            <result column="name_zh" property="name_zh"/>
+        </collection>
+     </resultMap>
+
+
+<select id="loadAdminByUsername" parameterType="String" resultMap="BaseResultMap">
+    select * from admins where username = #{username}
+</select>
+    <select id="getAdminRolesById" resultType="cn.stians.vblogadmin.model.admin.RoleAdmin">
+       select r.* from role_admin r ,admins a ,admin_role ar where r.id = ar.rid and a.id =ar.admin_id
+and a.id = #{id}
+    </select>
+    <select id="getAllAdmins" resultMap="AdminMapWithRole">
+        select a.id as id,a.name as name,a.adminpic as adminpic,a.enabled as enabled,a.mark as mark,
+        a.username as username,ra.name as rname,ra.name_zh as name_zh,a.phone as phone,a.address as address,a.email as email,
+        ra.id as rid
+         from admins a LEFT JOIN admin_role ar on a.id = ar.admin_id
+         LEFT JOIN role_admin ra on ar.rid = ra.id where a.id !=#{id}
+        <if test="keyWords !=null">
+            and a.name like concat('%',#{keyWords},'%')
+        </if>
+          order by a.id asc
+    </select>
+<select id="getAllAdminsExceptCurrentAdmin" resultMap="BaseResultMap">
+    select * from admins where id !=#{id};
+</select>
+    <update id="updateByPrimaryKeySelective" parameterType="cn.stians.vblogadmin.model.Admins">
+        update admins
+        <set>
+            <if test="name != null">
+                name = #{name,jdbcType=VARCHAR},
+            </if>
+            <if test="phone != null">
+                phone = #{phone,jdbcType=VARCHAR},
+            </if>
+            <if test="address != null">
+                address = #{address,jdbcType=VARCHAR},
+            </if>
+            <if test="enabled != null">
+                enabled = #{enabled,jdbcType=BIT},
+            </if>
+            <if test="username != null">
+                username = #{username,jdbcType=VARCHAR},
+            </if>
+            <if test="password != null">
+                password = #{password,jdbcType=VARCHAR},
+            </if>
+            <if test="adminPic != null">
+                adminpic = #{adminPic,jdbcType=VARCHAR},
+            </if>
+            <if test="mark != null">
+                mark = #{mark,jdbcType=VARCHAR},
+            </if>
+            <if test="email != null">
+                email = #{email,jdbcType=VARCHAR},
+            </if>
+
+        </set>
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+<delete id="deleteAdminRoles">
+    delete from admin_role where admin_id = #{id}
+</delete>
+    <insert id="updateAdminRoles">
+        insert into admin_role (admin_id,rid)
+        values
+        <foreach collection="ids" item="rid" separator=",">
+            (#{id},#{rid})
+        </foreach>
+    </insert>
+    <delete id="deleteAdmin">
+        delete from admins where id=#{id}
+    </delete>
+</mapper>

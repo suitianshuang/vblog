@@ -1,0 +1,322 @@
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 分享 */
+.more-share-model.data-v-309d8e42{
+	background:rgba(51, 51, 51, 0.49);
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	z-index: 100;
+}
+.more-share.data-v-309d8e42{
+	position: fixed;
+	z-index: 110;
+	bottom: 0;
+	left: 0;
+	right: 0;
+	background: #FFFFFF;
+}
+.more-share-title.data-v-309d8e42,.more-share-bottom.data-v-309d8e42{
+	font-size: 32rpx;
+	padding: 25rpx;
+}
+.more-share-body.data-v-309d8e42{
+	white-space: nowrap;
+	width: 100%;
+	height: 200rpx;
+	border-bottom: 1rpx solid #EEEEEE;
+	display: -webkit-box!important;
+	display: -webkit-flex!important;
+	display: -ms-flexbox!important;
+	display: flex!important;
+	line-height: 200rpx!important;
+}
+.more-share-item.data-v-309d8e42{
+	width: 25%;
+	display: -webkit-inline-box;
+	display: -webkit-inline-flex;
+	display: -ms-inline-flexbox;
+	display: inline-flex;
+	-webkit-box-pack: center;
+	-webkit-justify-content: center;
+	    -ms-flex-pack: center;
+	        justify-content: center;
+	-webkit-box-align: center;
+	-webkit-align-items: center;
+	    -ms-flex-align: center;
+	        align-items: center;
+	-webkit-box-orient: vertical;
+	-webkit-box-direction: normal;
+	-webkit-flex-direction: column;
+	    -ms-flex-direction: column;
+	        flex-direction: column;
+	height: 100%;
+}
+.more-share-item>view.data-v-309d8e42:first-child{
+	width: 100rpx;
+	height: 100rpx;
+	-webkit-border-radius: 100%;
+	        border-radius: 100%;
+	font-size: 55rpx;
+	color: #FFFFFF;
+}
+.more-share-item>view.data-v-309d8e42:last-child{
+	color: #7A7A7A;
+}
+.more-share-hover.data-v-309d8e42{
+	background: #EEEEEE;
+}
+.more-share-wx.data-v-309d8e42{
+	background: #2AD19B;
+}
+.more-share-pyq.data-v-309d8e42{
+	background: #514D4C;
+}
+.more-share-wb.data-v-309d8e42{
+	background: #EE5E5E;
+}
+.more-share-qq.data-v-309d8e42{
+	background: #4A73BA;
+}
+
+

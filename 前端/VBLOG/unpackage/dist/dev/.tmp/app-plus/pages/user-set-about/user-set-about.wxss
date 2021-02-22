@@ -1,0 +1,12 @@
+
+.user-set-about-t{
+	padding: 40rpx 0;
+}
+.user-set-about-t>image{
+	height: 500rpx !important;
+	width: 100%;
+}
+.user-set-about-t>view{
+	color: #CCCCCC;
+}
+

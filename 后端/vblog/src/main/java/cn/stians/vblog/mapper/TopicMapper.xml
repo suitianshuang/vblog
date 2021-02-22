@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.TopicMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.model.Topic" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="titlepic" property="titlepic" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="isenable" property="isenable" jdbcType="INTEGER" />
+    <result column="topic_class_id" property="topicClassId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="total_num" property="totalNum" jdbcType="INTEGER" />
+    <result column="today_num" property="todayNum" jdbcType="INTEGER" />
+  </resultMap>
+  <!--实际上是最近更新而不是最热-->
+  <select id="getHotTopic" resultMap="BaseResultMap">
+
+    select * from topic ORDER BY create_time desc limit 0,10
+  </select>
+
+  <select id="getTopicListByTopicClassId" resultMap="BaseResultMap">
+    select * from topic where topic_class_id = #{id}
+  </select>
+
+<select id="searchTopic" parameterType="String" resultMap="BaseResultMap">
+  select  * from topic where title  like "%"#{keyWord,jdbcType=VARCHAR}"%"
+</select>
+
+  <insert id="topicCreate" parameterType="cn.stians.vblog.model.Topic">
+    insert into topic (id,title,titlepic,description,create_time,topic_class_id)
+    values (default ,#{title},#{titlepic},#{description},#{createTime},#{topicClassId})
+  </insert>
+
+  <insert id="insertNewTopic">
+    insert into topic (id,title,titlepic,create_time,topic_class_id)
+    values (default ,#{topicTitle},#{url},#{createTime},7)
+  </insert>
+  <select id="getOneTopic" parameterType="String" resultMap="BaseResultMap">
+        select * from topic where titlepic = #{url}
+  </select>
+
+  <select id="findTopicId" resultType="int">
+    select id from topic where title=#{topicTitle} and create_time =#{createTime} and titlepic= #{url}
+  </select>
+
+  <update id="increaseTopicNum" parameterType="int">
+    update topic set total_num = total_num+1 ,today_num = today_num+1
+    where id = #{topicId}
+  </update>
+  <update id="updateTodayNum">
+    update topic set today_num =0
+  </update>
+</mapper>

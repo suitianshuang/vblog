@@ -1,0 +1,8 @@
+
+.chat-load-more{
+	padding: 15rpx 0;color: #BBBBBB;
+}
+.chat-load-more-hover{
+	background: #F4F4F4;
+}
+

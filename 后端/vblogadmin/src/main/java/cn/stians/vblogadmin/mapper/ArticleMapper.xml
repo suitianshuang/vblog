@@ -1,0 +1,240 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.ArticleMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Article" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="userid" property="userid" jdbcType="INTEGER" />
+    <result column="title" property="title" jdbcType="VARCHAR" />
+    <result column="titlepic" property="titlepic" jdbcType="VARCHAR" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="sharenum" property="sharenum" jdbcType="INTEGER" />
+    <result column="collectionnum" property="collectionNum" jdbcType="INTEGER" />
+    <result column="location" property="location" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="INTEGER" />
+    <result column="rewardnum" property="rewardNum" jdbcType="INTEGER" />
+    <result column="isaccepted" property="isAccepted" jdbcType="INTEGER" />
+    <result column="pageview_num" property="pageviewNum" jdbcType="INTEGER" />
+    <result column="article_class_id" property="articleClassId" jdbcType="INTEGER" />
+    <result column="share_id" property="shareId" jdbcType="INTEGER" />
+    <result column="ding_count" property="dingCount" jdbcType="INTEGER" />
+    <result column="cai_count" property="caiCount" jdbcType="INTEGER" />
+    <result column="comment_count" property="commentCount" jdbcType="INTEGER" />
+    <result column="isopen" property="isopen" jdbcType="INTEGER" />
+    <result column="topic_id" property="topicId" jdbcType="INTEGER" />
+
+      <!--<association property="userinfo" javaType="cn.stians.vblogadmin.model.Userinfo">-->
+          <!--<id column="id" property="id" jdbcType="INTEGER"/>-->
+          <!--<result column="user_id" property="userId" jdbcType="INTEGER"/>-->
+
+      <!--</association>-->
+
+  </resultMap>
+    <resultMap id="articleMap" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+        <association property="users" javaType="cn.stians.vblogadmin.model.Users">
+            <id column="uid" property="id" jdbcType="INTEGER"/>
+            <result column="uname" property="username" jdbcType="VARCHAR"/>
+        </association>
+        <association property="articleClass" javaType="cn.stians.vblogadmin.model.ArticleClass">
+            <id column="acid" property="id" jdbcType="INTEGER"/>
+            <result column="acname" property="classifyName" jdbcType="VARCHAR"/>
+        </association>
+        <collection property="images" ofType="cn.stians.vblogadmin.model.Image">
+            <id column="iid" jdbcType="INTEGER"/>
+            <result column="url" jdbcType="VARCHAR"/>
+        </collection>
+    </resultMap>
+  
+  <resultMap id="mymap1" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+  
+  <select id="findArticleByClassifyName"  resultMap="mymap1">
+    select * from article where article_class_id =#{0} and isopen =1 order by  create_time desc
+ </select>
+
+  <resultMap id="mymap2" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+
+  <select id="ArticleSearchByKeyWords"  resultMap="mymap2">
+     select * from article where title  like "%"#{keyWord,jdbcType=VARCHAR}"%"
+  </select>
+
+  <resultMap id="mymap3" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+  <select id="getArticleByTopicId" parameterType="int" resultMap="mymap3">
+    select * from article where topic_id = #{id} order by  create_time desc
+  </select>
+
+
+
+<insert id="publishArticle">
+  insert into article (id,userid,title,titlepic,content,isopen,topic_id,article_class_id,create_time,rewardnum)
+   values (default,#{userId},#{title},#{titlepic},#{content},#{isopen},#{topicId},#{articleClassId},#{createTime},#{rewardNum});
+</insert>
+
+  <insert id="insertImageIdAndArticleId">
+    insert into image_article (id,image_id,article_id,create_time)
+     values (default ,#{imageId},#{articleId},now())
+  </insert>
+  
+
+  <select id="getArticleClassId" parameterType="int" resultType="int">
+    select article_class_id from article where id = #{articleId}
+  </select>
+  <select id="getTopicClass" parameterType="int" resultType="int">
+    select topic_id from article where id = #{artcileId}
+  </select>
+
+  <resultMap id="mymap4" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+  <select id="getFollowListArticle" parameterType="int" resultMap="mymap4">
+    select a.* from fans f
+    LEFT OUTER JOIN article a on f.follow_id = a.userid
+    where f.user_id = #{userId}  order BY a.create_time desc
+  </select>
+
+  <select id="getTodayArticleCount" resultType="int">
+    select count(*) from article where userid = #{userId}
+     and create_time >#{todayTime}
+  </select>
+
+
+  <resultMap id="mymap5" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+
+  <select id="getMyHottestArticle" parameterType="int"  resultMap="mymap5">
+    select *from article where userid= #{userId}  ORDER BY  (ding_count+cai_count+comment_count) desc
+ </select>
+
+  <resultMap id="mymap6" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+
+  <select id="getMyNewestArticle" parameterType="int"  resultMap="mymap6">
+    select * from article where userid= #{userId}  ORDER BY  create_time desc
+ </select>
+
+
+  <resultMap id="mymap7" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+
+  <select id="getOthersHottestArticle" parameterType="int"  resultMap="mymap7">
+    select *from article where userid= #{userId} and isopen = 1  ORDER BY  (ding_count+cai_count+comment_count) desc
+ </select>
+
+  <resultMap id="mymap8" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+
+    <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+    </association>
+
+    <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+    </collection>
+    <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+    </collection>
+  </resultMap>
+
+  <select id="getOthersNewestArticle" parameterType="int"  resultMap="mymap8">
+    select *from article where userid= #{userId} and isopen = 1  ORDER BY  create_time desc
+ </select>
+    <delete id="ArticleDelete">
+        delete from article where id =#{articleId} and userid = #{userId}
+    </delete>
+    
+    <resultMap id="mymap9" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+        <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+        </association>
+
+        <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+        </collection>
+        <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+        </collection>
+    </resultMap>
+    <select id="getCollectionList" parameterType="int" resultMap="mymap9">
+        select * from article a ,collection c where a.id = c.article_id and c.user_id = #{userId}
+    </select>
+
+    <resultMap id="mymap10" type="cn.stians.vblogadmin.model.Article" extends="BaseResultMap">
+        <association property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUserByArticleId" column="userid">
+        </association>
+        <collection property="comments" select="cn.stians.vblogadmin.mapper.CommentMapper.findCommentByArticleId" column="id"></collection>
+
+        <collection property="support" select="cn.stians.vblogadmin.mapper.SupportMapper.findSupportsByArticleId" column="id">
+        </collection>
+
+        <collection property="images" select="cn.stians.vblogadmin.mapper.ImageMapper.findImageByArticleId" column="id">
+        </collection>
+    </resultMap>
+    <select id="getUserComment" parameterType="int" resultMap="mymap10">
+        select * from article where userid = #{userId}
+    </select>
+
+<update id="updateIsAccepted" parameterType="int">
+    update article set isaccepted = 1
+    where  id = #{articleId}
+</update>
+
+    <select id="getTotal" resultType="int">
+        select count(*) from article
+    </select>
+
+    <select id="getArticleByPage" resultMap="articleMap">
+        select a.* ,u.id as uid,u.username as uname,ac.id as acid,ac.classify_name as acname,i.id as iid,i.url as url
+        from users u,article_class ac,article a ,image_article ia,image i
+        where a.userid = u.id and a.article_class_id = ac.id and a.id = ia.article_id and ia.image_id = i.id
+
+        order by a.create_time desc
+        <if test="page !=null and size !=null">
+            limit #{page},#{size}
+        </if>
+
+    </select>
+</mapper>

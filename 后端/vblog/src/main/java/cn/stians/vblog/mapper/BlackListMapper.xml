@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.BlackListMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.model.BlackList" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="black_id" property="blackId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+
+  <insert id="addBlackList" parameterType="cn.stians.vblog.model.BlackList">
+    insert into blacklist (id,black_id,user_id,create_time)
+    values (default ,#{blackId},#{userId},now())
+  </insert>
+  <select id="checkBlackList" parameterType="cn.stians.vblog.model.BlackList" resultType="int">
+    select count(*) from blacklist where black_id =#{blackId} and user_id = #{userId}
+  </select>
+
+  <delete id="removeBlacklist" parameterType="cn.stians.vblog.model.BlackList">
+    delete from blacklist where black_id = #{blackId} and user_id =#{userId}
+  </delete>
+
+  <select id="findRelationBlack" resultType="int">
+    select  count(*) from blacklist where black_id =#{blackId} and user_id = #{userId}
+  </select>
+</mapper>

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.FansMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Fans" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="follow_id" property="followId" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+  </resultMap>
+<select id="findFansByUserId" resultMap="BaseResultMap" parameterType="int">
+  select * from fans where follow_id=#{0}
+</select>
+
+  <insert id="follow" parameterType="cn.stians.vblogadmin.model.Fans">
+    insert into fans (id,follow_id,user_id,create_time) values(default ,#{followId},#{userId},now())
+  </insert>
+
+  <resultMap id="mymap1" type="cn.stians.vblogadmin.model.Fans" extends="BaseResultMap">
+      <collection property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUsersById" column="follow_id">
+      </collection>
+  </resultMap>
+  <select id="getFallow" parameterType="int" resultMap="mymap1">
+    select * from fans where user_id = #{id}
+  </select>
+
+  <resultMap id="mymap2" type="cn.stians.vblogadmin.model.Fans" extends="BaseResultMap">
+    <collection property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUsersById" column="user_id">
+    </collection>
+  </resultMap>
+  <select id="getFansList" resultType="int" resultMap="mymap2">
+    select * from fans where follow_id = #{id}
+  </select>
+  <resultMap id="mymap3" type="cn.stians.vblogadmin.model.Fans" extends="BaseResultMap">
+    <collection property="users" select="cn.stians.vblogadmin.mapper.UserMapper.findUsersById" column="follow_id">
+    </collection>
+  </resultMap>
+<select id="getFriendsList" parameterType="int" resultMap="mymap3">
+select users.id as id,users.user_id as user_id,users.follow_id as follow_id ,users.create_time as create_time
+from fans users, fans follows
+where users.user_id=follows.follow_id
+and follows.user_id=users.follow_id and users.user_id=#{id}
+</select>
+  <select id="getFriendCount" parameterType="int" resultType="int">
+    select count(*)
+from fans users, fans follows
+where users.user_id=follows.follow_id
+and follows.user_id=users.follow_id and users.user_id=#{userId}
+  </select>
+
+  <select id="findRelation" resultType="int">
+    select count(*) from fans where user_id = #{visitId} and follow_id = #{userId}
+  </select>
+
+  <delete id="unFollow" parameterType="cn.stians.vblogadmin.model.Fans" >
+     DELETE FROM fans WHERE user_id = #{userId} and follow_id = #{followId}
+  </delete>
+
+</mapper>

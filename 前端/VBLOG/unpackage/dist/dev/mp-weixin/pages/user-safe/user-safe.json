@@ -1,0 +1,6 @@
+{
+  "navigationBarTitleText": "账号与安全",
+  "usingComponents": {
+    "home-list-item": "/components/home/home-list-item"
+  }
+}

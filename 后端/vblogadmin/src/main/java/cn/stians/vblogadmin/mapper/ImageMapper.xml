@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.ImageMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Image" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+
+  <select id="findImageByArticleId" parameterType="int" resultMap="BaseResultMap">
+    select * from image i,article a ,image_article ia
+     where i.id = ia.image_id and a.id = ia.article_id and a.id = #{id}
+  </select>
+
+  <insert id="updateImage">
+    insert into image (id,url,user_id,create_time) values(default ,#{url},#{userId},now())
+  </insert>
+  <select id="findImageByUrl"  resultMap="BaseResultMap">
+        select * from image where url = #{url} and user_id =#{userId}
+    </select>
+
+</mapper>

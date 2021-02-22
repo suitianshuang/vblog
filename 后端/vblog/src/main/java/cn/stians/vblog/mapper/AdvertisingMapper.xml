@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblog.mapper.AdvertisingMapper" >
+  <resultMap id="BaseResultMap" type="cn.stians.vblog.model.Advertising" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="picture" property="picture" jdbcType="VARCHAR" />
+    <result column="url" property="url" jdbcType="VARCHAR" />
+    <result column="type" property="type" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="DATE" />
+  </resultMap>
+
+  <select id="getAdvertising" resultMap="BaseResultMap">
+    select * from advertising
+  </select>
+</mapper>

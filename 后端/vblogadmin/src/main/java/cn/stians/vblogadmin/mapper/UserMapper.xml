@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="cn.stians.vblogadmin.mapper.UserMapper">
+    <resultMap id="BaseResultMap" type="cn.stians.vblogadmin.model.Users">
+        <id column="id" property="id" jdbcType="INTEGER"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="userpic" property="userpic" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="role_id" property="roleId" jdbcType="VARCHAR"/>
+        <result column="email" property="email" jdbcType="VARCHAR"/>
+        <result column="create_time" property="createTime" jdbcType="VARCHAR"/>
+        <result column="isenable" property="isenable" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="getUsersByPage" resultMap="userinfoMap">
+        select u.id as id, u.username as username,u.userpic as userpic,u.email as email
+        ,u.create_time as create_time,uinfo.sex as sex,uinfo.age as age,uinfo.job as job
+        ,uinfo.birthday as birthday,uinfo.hometown as hometown,uinfo.emotion as emotion
+        ,u.isenable as isenable from users u ,userinfo uinfo where u.id = uinfo.user_id
+        <if test="user !=null">
+            <if test="user.username!=null">
+                and u.username like concat('%',#{user.username},'%')
+            </if>
+            <if test="user.isenable!=null">
+                and u.isenable = #{user.isenable}
+            </if>
+            <if test="userinfo.sex!=null">
+                and uinfo.sex = #{userinfo.sex}
+            </if>
+            <if test="userinfo.emotion!=null ">
+                and uinfo.emotion =#{userinfo.emotion}
+            </if>
+            <if test="user.email!=null and user.email!=''">
+                and u.email = #{user.email}
+            </if>
+        </if>
+
+        <if test="time!= null">
+            and u.create_time between #{time[0]} and #{time[1]}
+        </if>
+        <if test="page !=null and size !=null">
+            limit #{page},#{size}
+        </if>
+    </select>
+
+    <resultMap id="userinfoMap" type="cn.stians.vblogadmin.model.Users" extends="BaseResultMap">
+        <association property="userinfo" javaType="cn.stians.vblogadmin.model.Userinfo">
+            <id column="id" property="id" jdbcType="INTEGER"/>
+            <result column="user_id" property="userId" jdbcType="INTEGER"/>
+            <result column="sex" property="sex" jdbcType="INTEGER"/>
+            <result column="age" property="age" jdbcType="INTEGER"/>
+            <result column="emotion" property="emotion" jdbcType="VARCHAR"/>
+            <result column="job" property="job" jdbcType="VARCHAR"/>
+            <result column="birthday" property="birthday" jdbcType="VARCHAR"/>
+            <result column="hometown" property="hometown" jdbcType="VARCHAR"/>
+        </association>
+    </resultMap>
+    <select id="getTotal" resultType="int">
+        select count(*) from users u ,userinfo uinfo where u.id = uinfo.user_id
+
+        <if test="user !=null">
+            <if test="user.username!=null and user.username!=''">
+                and u.username like concat('%',#{user.username},'%')
+            </if>
+            <if test="user.isenable!=null">
+                and u.isenable = #{user.isenable}
+            </if>
+            <if test="userinfo.sex!=null">
+                and uinfo.sex = #{userinfo.sex}
+            </if>
+            <if test="userinfo.emotion!=null ">
+                and uinfo.emotion =#{userinfo.emotion}
+            </if>
+            <if test="user.email!=null and user.email!=''">
+                and u.email = #{user.email}
+            </if>
+        </if>
+
+        <if test="time!= null">
+            and u.create_time between #{time[0]} and #{time[1]}
+        </if>
+
+    </select>
+
+    <update id="updateEnable">
+        update  users set isenable = #{isenable} where id = #{id}
+    </update>
+</mapper>

@@ -1,0 +1,103 @@
+.common-list.data-v-6a062370{
+	padding: 20rpx;
+}
+.common-list-l.data-v-6a062370{
+	-webkit-flex-shrink: 0;
+	    -ms-flex-negative: 0;
+	        flex-shrink: 0;
+}
+.common-list-l image.data-v-6a062370{
+	width: 90rpx;
+	height: 90rpx;
+	-webkit-border-radius:100%;
+	        border-radius:100%;
+}
+.common-list-r.data-v-6a062370{
+	-webkit-box-flex: 1;
+	-webkit-flex: 1;
+	    -ms-flex: 1;
+	        flex: 1;
+	margin-left: 15rpx;
+	border-bottom: 1rpx solid #EEEEEE;
+	padding-bottom: 10rpx;
+}
+.common-list-r>view:nth-child(3)>image.data-v-6a062370{
+	width: 100%;
+	-webkit-border-radius:10rpx;
+	        border-radius:10rpx;
+}
+.common-list-r>view:nth-child(1)>view.data-v-6a062370:first-child{
+	color: #999999;
+	font-size: 32rpx;
+}
+.common-list-r>view:nth-child(1)>view.data-v-6a062370:last-child{
+	background: #EEEEEE;
+	padding: 0 10rpx;
+	font-size: 26rpx;
+}
+.common-list-r>view.data-v-6a062370:nth-child(2){
+	font-size: 32rpx;
+	padding: 12rpx 0;
+}
+.common-list-r>view.data-v-6a062370:nth-child(3){
+	position: relative;
+	margin-bottom: 10rpx;
+}
+.common-list-play.data-v-6a062370,.common-list-playinfo.data-v-6a062370{
+	position: absolute;
+	color: #FFFFFF;
+}
+.common-list-play.data-v-6a062370{
+	font-size: 130rpx;
+}
+.common-list-playinfo.data-v-6a062370{
+	right: 10rpx;
+	bottom: 10rpx;
+	background: rgba(51, 51, 51, 0.73);
+	-webkit-border-radius: 20rpx;
+	        border-radius: 20rpx;
+	padding: 0 20rpx;
+	font-size: 26rpx;
+}
+.common-list-r>view:nth-child(4)>view.data-v-6a062370{
+	color: #AAAAAA;
+}
+.common-list-r>view:nth-child(4)>view:nth-child(2)>view.data-v-6a062370{
+	margin-left: 10rpx;
+	padding-left: 5rpx;
+	font-size: 28rpx;
+}
+.common-list-share.data-v-6a062370{
+	background: #EEEEEE;
+	width: 100%;
+	padding: 10rpx;
+	-webkit-border-radius: 10rpx;
+	        border-radius: 10rpx;
+}
+.common-list-share>image.data-v-6a062370{
+	width: 200rpx;
+	height: 150rpx;
+	margin-right: 10rpx;
+}
+.common-list-r.data-v-6a062370{
+	border-bottom: 0;
+}
+.common-list.data-v-6a062370{
+	border-bottom: 1rpx solid #EEEEEE;
+}
+.common-list-r-time.data-v-6a062370{
+	padding: 15rpx 0;
+	color: #CCCCCC!important;
+	font-size: 25rpx;
+	background: #FFFFFF!important;
+}
+.common-list-r>view:nth-child(1)>view:nth-child(1)>view.data-v-6a062370:first-child{
+	color: #999999;
+	font-size: 32rpx;
+}
+.common-list-r>view:nth-child(1)>view:nth-child(1)>view.data-v-6a062370:last-child{
+	background: #EEEEEE;
+	padding: 0 10rpx;
+	font-size: 26rpx;
+}
+

@@ -1,0 +1,12 @@
+
+.home-data.data-v-3edfde7d{ 
+	padding: 20rpx 40rpx;
+}
+.home-data>view.data-v-3edfde7d{
+	color: #989898;
+}
+.home-data>view>view.data-v-3edfde7d{
+	font-size: 32rpx;
+	color: #333333;
+}
+

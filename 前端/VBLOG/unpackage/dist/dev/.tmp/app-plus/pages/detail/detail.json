@@ -1,0 +1,17 @@
+{
+  "navigationBarTitleText": "内容页",
+  "scrollIndicator": "none",
+  "bounce": "none",
+  "titleNView": {
+    "buttons": [
+      {
+        "type": "menu"
+      }
+    ]
+  },
+  "usingComponents": {
+    "detail-info": "/components/detail/detail-info",
+    "comment-list": "/components/detail/comment-list",
+    "user-chat-bottom": "/components/user-chat/user-chat-bottom"
+  }
+}
